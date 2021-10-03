@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     os.makedirs(args.save_dir, mode=0o777, exist_ok=True)
     for code in tqdm(codes):
-        url = "https://finance.naver.com/item/sise_day.nhn?code=068270&page=1"
+        url = f"https://finance.naver.com/item/sise_day.nhn?code={code}&page=1"
         headers = ("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36")
 
         opener = req.build_opener()
@@ -60,7 +60,7 @@ if __name__ == '__main__':
             last_page = pgrr.a['href'].split("=")[-1]
 
         df = pd.DataFrame()
-        sise_url = "https://finance.naver.com/item/sise_day.nhn?code=068270" # 셀트리온 종목코드 : 068270
+        sise_url = f"https://finance.naver.com/item/sise_day.nhn?code={code}" # 셀트리온 종목코드 : 068270
 
         for page in range(1, int(last_page)+1):
             page_url = '{}&page={}'.format(sise_url, page)
